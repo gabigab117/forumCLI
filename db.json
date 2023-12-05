@@ -1,1 +1,1 @@
-{"user": {"1": {"username": "gabigab", "password": "$argon2id$v=19$m=65536,t=3,p=4$eenkmWYBnW7mFQNNHdqMWg$grTgwq1eWve5p8VLSWJzdehR84bqiir6hlouog05w9c"}}}
+{"user": {"1": {"username": "gab", "password": "$argon2id$v=19$m=65536,t=3,p=4$M1eso7qXxqju3pzZa+7N0Q$eoHPXxnqUPDuQYYvtBwDNk8aCLZJ0Mc/55YHTONHg00"}}, "forum": {"1": {"category": "Test", "topics": [{"title": "Sujet1", "user": [{"username": "gab", "password": "$argon2id$v=19$m=65536,t=3,p=4$M1eso7qXxqju3pzZa+7N0Q$eoHPXxnqUPDuQYYvtBwDNk8aCLZJ0Mc/55YHTONHg00"}], "message": ["Coucou"]}]}}}
