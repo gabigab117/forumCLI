@@ -28,8 +28,7 @@ class Browser:
         forum = db.table("forum")
         table = Table(title="Catégories")
         table.add_column("Catégories")
-        for category in forum:
-            table.add_row(category["category"])
+        [table.add_row(category["category"]) for category in forum]
         
         self.console.print(table)
     
@@ -39,8 +38,7 @@ class Browser:
         table.add_column("Sujets")
         table.add_column("Auteurs")
         category = forum.search(where("category") == category_name)
-        for el in category[0]["topics"]:
-            table.add_row(el["title"], el["user"])
+        [table.add_row(el["title"], el["user"]) for el in category[0]["topics"]]
 
         self.console.print(table)
     
@@ -51,9 +49,7 @@ class Browser:
         table.add_column("Auteurs")
         category = forum.search(where("category") == category_name)
         for el in category[0]["topics"]:
-            if el["title"] == topic_title:
-                for message_list in el["message"]:
-                    table.add_row(message_list[0], message_list[1])
+            [table.add_row(message_list[0], message_list[1]) for message_list in el["message"] if el["title"] == topic_title]
         
         self.console.print(table)
 
