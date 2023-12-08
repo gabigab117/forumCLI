@@ -1,0 +1,14 @@
+argon2-cffi==23.1.0
+argon2-cffi-bindings==21.2.0
+cffi==1.16.0
+click==8.1.7
+colorama==0.4.6
+markdown-it-py==3.0.0
+mdurl==0.1.2
+pycparser==2.21
+Pygments==2.17.2
+rich==13.7.0
+shellingham==1.5.4
+tinydb==4.8.0
+typer==0.9.0
+typing_extensions==4.8.0
