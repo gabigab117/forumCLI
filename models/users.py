@@ -15,7 +15,7 @@ class User:
         """
         self.username = username
         self.hasher = PasswordHasher()
-        self.password = self.set_password(password)
+        self.password = self._set_password(password)
         self.save()
     
     def save(self):
@@ -26,7 +26,7 @@ class User:
         """
         db.table("user").insert({"username": self.username, "password": self.password})
     
-    def set_password(self, password):
+    def _set_password(self, password):
         """
         Hashes the user's password.
 
