@@ -57,7 +57,5 @@ class Browser:
     def add_message(self, category_name, topic_title, message):
         forum = db.table("forum")
         category = forum.search(where("category") == category_name)
-        for el in category[0]["topics"]:
-            if el["title"] == topic_title:
-                el["message"].append([message, self.username])
+        [el["message"].append([message, self.username]) for el in category[0]["topics"] if el["title"] == topic_title]
         forum.update({"topics": category[0]["topics"]}, where("category") == category_name)
