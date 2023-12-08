@@ -3,10 +3,7 @@ from argon2 import PasswordHasher
 from database import db
 from rich.table import Table
 from rich.console import Console
-
-
-class AuthError(Exception):
-    pass
+from security import AuthError, is_authenticate
 
 class Browser:
     def __init__(self, username):
@@ -24,7 +21,8 @@ class Browser:
         else:
             raise AuthError("No account for this username")
     
-    def display_category(self):
+    def display_categories(self):
+        is_authenticate(self.auth)
         forum = db.table("forum")
         table = Table(title="Catégories")
         table.add_column("Catégories")
@@ -33,6 +31,7 @@ class Browser:
         self.console.print(table)
     
     def display_topics(self, category_name):
+        is_authenticate(self.auth)
         forum = db.table("forum")
         table = Table(title=f"Sujets de la catégorie {category_name}")
         table.add_column("Sujets")
@@ -43,6 +42,7 @@ class Browser:
         self.console.print(table)
     
     def display_messages(self, category_name, topic_title):
+        is_authenticate(self.auth)
         forum = db.table("forum")
         table = Table(title=f"Messages du sujet {topic_title}")
         table.add_column("Messages")
@@ -55,6 +55,7 @@ class Browser:
 
     
     def add_message(self, category_name, topic_title, message):
+        is_authenticate(self.auth)
         forum = db.table("forum")
         category = forum.search(where("category") == category_name)
         [el["message"].append([message, self.username]) for el in category[0]["topics"] if el["title"] == topic_title]
