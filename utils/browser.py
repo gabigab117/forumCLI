@@ -40,7 +40,7 @@ class Browser:
         table.add_column("Auteurs")
         category = forum.search(where("category") == category_name)
         for el in category[0]["topics"]:
-            table.add_row(el["title"], el["user"][0]["username"])
+            table.add_row(el["title"], el["user"])
 
         self.console.print(table)
     
@@ -53,10 +53,15 @@ class Browser:
         for el in category[0]["topics"]:
             if el["title"] == topic_title:
                 for message_list in el["message"]:
-                    table.add_row(message_list[0], message_list[1][0]["username"])
+                    table.add_row(message_list[0], message_list[1])
         
         self.console.print(table)
 
     
     def add_message(self, category_name, topic_title, message):
-        pass
+        forum = db.table("forum")
+        category = forum.search(where("category") == category_name)
+        for el in category[0]["topics"]:
+            if el["title"] == topic_title:
+                el["message"].append([message, self.username])
+        forum.update({"topics": category[0]["topics"]}, where("category") == category_name)

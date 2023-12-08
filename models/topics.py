@@ -2,17 +2,15 @@ from database import db
 from tinydb import Query, where
 
 class Topics:
-    def __init__(self, title, category, message, user):
+    def __init__(self, title, category, message, username):
         self.title = title
         self.category = category
         self.message = message
-        self.user = user
+        self.username = username
         self.save()
     
     def save(self):
         forum = db.table("forum")
         category = forum.search(where("category") == self.category)
-        category[0]["topics"].append({"title": self.title, "user": self.user, "message": [[self.message, self.user]]})
+        category[0]["topics"].append({"title": self.title, "user": self.username, "message": [[self.message, self.username]]})
         forum.update({"topics": category[0]["topics"]}, where("category") == self.category)
-
-# user = db.table("user").search(where("username") == "gab")
