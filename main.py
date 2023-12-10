@@ -20,7 +20,7 @@ def signup(username: str):
     s = Browser(username)
     s.signup()
     total = 0
-    for value in track(range(100), description="Inscription en cours"):
+    for _ in track(range(100), description="Inscription en cours"):
         time.sleep(0.01)
         total += 1
     print(f"Inscription de {username} en terminée.")
@@ -49,7 +49,7 @@ def display_topics(category: str):
 
 
 @app.command()
-def new_topic(username, title, category, message):
+def new_topic(username: str, category: str, title: str, message: str):
     s = Browser(username)
     signin(s)
     Topics(title, category, message, username)
