@@ -1,10 +1,8 @@
 import typer
 
-from rich.progress import track
-import time
-
 from utils import Browser
 from models import Topics
+from for_fun import progress_bar
 
 
 app = typer.Typer()
@@ -19,19 +17,13 @@ def signin(s):
 def signup(username: str):
     s = Browser(username)
     s.signup()
-    total = 0
-    for _ in track(range(100), description="Inscription en cours"):
-        time.sleep(0.01)
-        total += 1
+    progress_bar("Inscription en cours")
     print(f"Inscription de {username} en terminée.")
 
 
 @app.command()
 def display_categories():
-    total = 0
-    for _ in track(range(100), description="Affichage des catégories en cours"):
-        time.sleep(0.01)
-        total += 1
+    progress_bar("Affichage des catégories en cours")
     print(f"Liste des catégories")
 
     s.display_categories()
@@ -39,10 +31,7 @@ def display_categories():
 
 @app.command()
 def display_topics(category: str):
-    total = 0
-    for _ in track(range(100), description="Affichage des sujets en cours"):
-        time.sleep(0.01)
-        total += 1
+    progress_bar("Affichage des sujets en cours")
     print(f"Liste des sujets.")
 
     s.display_topics(category)
@@ -53,10 +42,7 @@ def new_topic(username: str, category: str, title: str, message: str):
     s = Browser(username)
     signin(s)
     Topics(title, category, message, username)
-    total = 0
-    for _ in track(range(100), description="Publication en cours"):
-        time.sleep(0.01)
-        total += 1
+    progress_bar("Publication en cours")
     print(f"Liste des sujets.")
     s.display_messages(category, title)
 
@@ -65,6 +51,7 @@ def new_topic(username: str, category: str, title: str, message: str):
 def add_message(username: str, category_name: str, topic_title: str, message: str):
     s = Browser(username)
     signin(s)
+    progress_bar("Publication du message...")
     s.add_message(category_name, topic_title, message)
     s.display_messages(category_name, topic_title)
 
