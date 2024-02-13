@@ -1,7 +1,7 @@
 import typer
 
 from utils import Browser
-from models import Topics
+from models import Topics, Category
 from for_fun import progress_bar
 
 
@@ -44,6 +44,19 @@ def display_topics(category: str):
     print(f"Liste des sujets.")
 
     s.display_topics(category)
+
+
+@app.command()
+def new_category(username: str, name: str):
+    """
+    Create and display a new topic in a specified category by a user.
+    """
+    s = Browser(username)
+    signin(s)
+    Category(name)
+    progress_bar("Publication en cours")
+    print(f"Liste des catégories.")
+    s.display_categories()
 
 
 @app.command()

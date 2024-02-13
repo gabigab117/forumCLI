@@ -23,4 +23,4 @@ python main.py --help
 
 ## Demo
 
-[![Demo Video for Forum CLI project](https://www.gabrieltrouve.fr/media/images/youtube_social_icon_white.original.png)](https://youtu.be/YElyXuaEU9Q?si=mEbmjtnpmAfolRtJ)
+https://youtu.be/6pfKjq7C2mU
